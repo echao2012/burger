@@ -37,7 +37,8 @@
             event.preventDefault();
 
             const newBurger = {
-                burger_name: $("#add-burger [name=burger-name]").val().trim()
+                burger_name: $("#add-burger [name=burger-name]").val().trim(),
+                devoured: false
             };
 
             $.ajax("/api/burgers", {
