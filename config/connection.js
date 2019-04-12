@@ -1,12 +1,12 @@
 // Dependencies
-const mySql = require("mysql");
+const mysql = require("mysql");
 require("dotenv").config();
 
 // Import MySQL database credentials
-const keys = require("./keys.js");
+const keys = require("../keys.js");
 
 // DB connection settings
-var connection = mysql.createConnection({
+const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: keys.mySqlDb.user,
