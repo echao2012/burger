@@ -1,35 +1,59 @@
-<h1>Eat The Burger!</h1>
+<div class="jumbotron jumbotron-fluid mb-0">
+    <div class="container">
+        <h1 class="display-4 mb-5">Eat the Burger!</h1>
 
-<h2>Add a burger: </h2>
-<form id="add-burger" class="button-size">
-    <input type="text" name="burger-name">
-    <button type="submit">Add</button>
-</form>
+        <form id="add-burger">
+            <div class="form-inline">
+                <label class="mr-2" for="burger-name">Add a burger:</label>
+                <div class="col-sm-5 px-0">
+                    <input type="text" class="form-control w-100" id="burger-name" placeholder="Burger name">
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-<h2>Burgers to eat:</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-5">
+            <div class="card my-4">
+                <div class="card-body">
+                    <h5 class="card-title">Burgers to Eat</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {{#each burgers}}
+                        {{#unless devoured}}
+                            <li class="list-group-item">
+                                <span class="align-middle">{{burger_name}}</span>
+                                <button class="btn btn-primary float-right change-devoured" data-id="{{id}}" data-newdevoured="{{devoured}}">Eat</button>
+                            </li>
+                        {{/unless}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
 
-<ul>
-    {{#each burgers}}
-        {{#unless devoured}}
-            <li>
-                {{burger_name}}
-                <button class="change-devoured" data-id="{{id}}" data-newdevoured="{{devoured}}">Eat</button>
-            </li>
-        {{/unless}}
-    {{/each}}
-</ul>
+        <div class="col-lg-5">
+            <div class="card my-4">
+                <div class="card-body">
+                    <h5 class="card-title">Eaten Burgers</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {{#each burgers}}
+                        {{#if devoured}}
+                            <li class="list-group-item">
+                                <span class="align-middle">{{burger_name}}</span>
+                            </li>
+                        {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h2>Eaten burgers:</h2>
 
-<ul>
-    {{#each burgers}}
-        {{#if devoured}}
-            <li>
-                {{burger_name}}
-            </li>
-        {{/if}}
-    {{/each}}
-</ul>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -37,7 +61,7 @@
             event.preventDefault();
 
             const newBurger = {
-                burger_name: $("#add-burger [name=burger-name]").val().trim(),
+                burger_name: $("#add-burger [id=burger-name]").val().trim(),
                 devoured: false
             };
 
