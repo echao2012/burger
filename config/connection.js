@@ -15,13 +15,17 @@ const connection = mysql.createConnection({
 });
 
 // Make the connection
-connection.connect(function(err) {
-    if(err) {
-        console.error("Error connection: " + err.stack);
-        return;
-    }
-    console.log("Connected to DB as ID: " + connection.threadId);
-})
+if(process.env.JAWSDB_URL) {
+    connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+    connection.connect(function(err) {
+        if(err) {
+            console.error("Error connection: " + err.stack);
+            return;
+        }
+        console.log("Connected to DB as ID: " + connection.threadId);
+    });
+}
 
 // Export the connection for ORM to use
 module.exports = connection;
