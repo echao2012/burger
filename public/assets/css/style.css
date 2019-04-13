@@ -1,0 +1,16 @@
+body {
+    background-color: #EB6864;
+}
+
+.jumbotron {
+    background: url(../images/burgers.jpg) no-repeat center;
+        -webkit-background-size: cover;
+        -moz-backgound-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    background-color: rgba(92, 92, 92, 0.9);
+    background-blend-mode: multiply;
+    /* color: white; */
+    color: #EB6864;
+    font-weight: bold;
+}
